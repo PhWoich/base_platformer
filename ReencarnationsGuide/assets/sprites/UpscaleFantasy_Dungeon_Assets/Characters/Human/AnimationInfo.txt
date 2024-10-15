@@ -1,0 +1,10 @@
+*Frame size* 
+
+- 128x128px: For all the animations.
+
+
+*Frame Duration*
+
+- 100ms: Attack, Jump, Die and Dmg.
+
+- 200ms: Idle and Walk.
