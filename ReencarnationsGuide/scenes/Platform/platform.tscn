@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnfoi1tdxq654"]
+
+[ext_resource type="Texture2D" uid="uid://dw5kdxdhbpgg6" path="res://assets/sprites/Minifantasy_Crypt_Of_The_Forgotten_Assets/Props/Props.png" id="1_1pe3e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3mh0"]
+size = Vector2(23, 14)
+
+[node name="Platform" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1pe3e")
+region_enabled = true
+region_rect = Rect2(454.043, 6.58658, 26.5965, 26.8598)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_t3mh0")
+one_way_collision = true

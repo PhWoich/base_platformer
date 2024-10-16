@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn2dpwh60upss"]
+
+[ext_resource type="Texture2D" uid="uid://d4brj5wudhweq" path="res://assets/sprites/Minifantasy_Creatures_Assets/Undead/Wildfire/WildfireIdle.png" id="1_iakaf"]
+[ext_resource type="Script" path="res://scenes/Soul/soul.gd" id="1_x7jr4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bcfc"]
+atlas = ExtResource("1_iakaf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx77w"]
+atlas = ExtResource("1_iakaf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pg3g"]
+atlas = ExtResource("1_iakaf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jso1d"]
+atlas = ExtResource("1_iakaf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pvhrn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bcfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx77w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pg3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jso1d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kbw7"]
+radius = 3.16228
+
+[node name="Soul" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_x7jr4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pvhrn")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_1kbw7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
