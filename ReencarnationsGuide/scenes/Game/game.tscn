@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmd0bacb6cfr"]
+
+[ext_resource type="Script" path="res://scenes/Game Manager/game_manager.gd" id="1_1jtry"]
+[ext_resource type="FontFile" uid="uid://bnoffqugacrcw" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0euhg"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Game Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_1jtry")
+
+[node name="Timer View" type="Label" parent="Game Manager"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_0euhg")
+text = "123"
+
+[node name="Game Over View" type="Label" parent="Game Manager"]
+offset_left = 325.0
+offset_top = 161.0
+offset_right = 373.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("2_0euhg")
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
