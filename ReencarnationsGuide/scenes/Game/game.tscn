@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwmd0bacb6cfr"]
+[gd_scene load_steps=17 format=3 uid="uid://bwmd0bacb6cfr"]
 
 [ext_resource type="Script" path="res://scenes/Game Manager/game_manager.gd" id="1_1jtry"]
 [ext_resource type="Texture2D" uid="uid://fym5qomduk87" path="res://assets/sprites/Minifantasy_Crypt_Of_The_Forgotten_Assets/Tileset/Tileset.png" id="1_aqxtc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnfoi1tdxq654" path="res://scenes/Platform/platform.tscn" id="5_36gnm"]
 [ext_resource type="PackedScene" uid="uid://cn2dpwh60upss" path="res://scenes/Soul/soul.tscn" id="6_ghuwl"]
 [ext_resource type="PackedScene" uid="uid://ciablxafq3bqs" path="res://scenes/bullet.tscn" id="7_qb2ip"]
+[ext_resource type="PackedScene" uid="uid://bnwvb7ig3te7a" path="res://scenes/Portal/portal.tscn" id="8_2l6u7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ql1mm"]
 texture = ExtResource("1_aqxtc")
@@ -1264,3 +1265,10 @@ position = Vector2(468, -437)
 position = Vector2(395, -436)
 
 [node name="Bullet" parent="." instance=ExtResource("7_qb2ip")]
+
+[node name="Portal" parent="." instance=ExtResource("8_2l6u7")]
+position = Vector2(297, -496)
+
+[node name="Portal2" parent="." instance=ExtResource("8_2l6u7")]
+position = Vector2(570, -488)
+scale = Vector2(-1, -1)
