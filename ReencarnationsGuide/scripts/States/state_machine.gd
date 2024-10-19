@@ -18,6 +18,10 @@ func _process(delta):
 	if current_state:
 		current_state.Update(delta)
 		
+func _physics_process(delta):
+	if current_state:
+		current_state.Physics_Update(delta)
+		
 func on_child_transition(state, new_state_name):
 	#print("Current:")
 	#print(current_state)

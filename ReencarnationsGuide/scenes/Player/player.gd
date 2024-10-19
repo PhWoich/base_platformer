@@ -6,6 +6,8 @@ const JUMP_VELOCITY = -300.0
 
 @export var gameManager : GameManager
 
+@export var damage_jump : float = 30.0
+
 @onready var root:Node2D
 @onready var bullet = load("res://scenes/Bullet/bullet.tscn")
 
@@ -17,7 +19,7 @@ const JUMP_VELOCITY = -300.0
 
 var looking_left:bool
 var last_bullet_point: Node2D
-
+var damaged_dir:int = 0
 
 func soul_collected():
 	if not soul_carry.visible:
@@ -31,6 +33,14 @@ func soul_deliver():
 		gameManager.add_soul()
 		return true
 	return false
+
+func get_damage(from : Node2D):
+	var distance = position.distance_to(from.position)
+	if distance < 30: 
+		if from.position.x > position.x:
+			damaged_dir = -1
+		else:
+			damaged_dir = 1 
 
 func buid_player(root_node:Node2D):
 	root = root_node
@@ -68,6 +78,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
+	if damaged_dir != 0:
+		velocity.x = damaged_dir * damage_jump
+		
 	handle_animation(direction)
 	move_and_slide()
 
@@ -76,20 +89,29 @@ func game_over_reaction():
 	self.queue_free()
 
 
+var taking_damage : bool = false
 func handle_animation(direction):
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
-		
-	if is_on_floor():
-		if direction == 0:
-			animated_sprite_2d.play("idle")
+	
+	if damaged_dir == 0:
+		if is_on_floor():
+			if direction == 0:
+				animated_sprite_2d.play("idle")
+			else:
+				animated_sprite_2d.play("run")
 		else:
-			animated_sprite_2d.play("run")
+			if velocity.y > 0:
+				animated_sprite_2d.play("jump_start")
+			else:
+				animated_sprite_2d.play("jump_finish")
 	else:
-		if velocity.y > 0:
-			animated_sprite_2d.play("jump_start")
+		if !taking_damage:
+			animated_sprite_2d.play("damage")
+			taking_damage = true
 		else:
-			animated_sprite_2d.play("jump_finish")
-			
+			if !animated_sprite_2d.is_playing():
+				damaged_dir = 0
+				taking_damage = false

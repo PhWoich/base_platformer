@@ -1,26 +1,29 @@
 extends State
 class_name EnemyIdle
 
-@export var enemy: CharacterBody2D
-@export var move_speed := 10.0
+@export var animated_sprite: AnimatedSprite2D
+@onready var timer = $Timer
 
-var move_direction : Vector2
-var wander_time : float
+var body_inside : bool = false
 
-func randomize_wander():
-	move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
-	wander_time = randf_range(1,3)
-	
 func Enter():
-	randomize_wander()
+	body_inside = false
+	#print("Enter Idle")
+	animated_sprite.play("idle")
+
+func Exit():
+	#print("Exit Idle")
+	pass
 	
 func Update(delta: float):
-	if wander_time > 0:
-		wander_time -= delta
-		
-	else: 
-		randomize_wander()
+	if body_inside:
+		Transitioned.emit(self, "EnemyChase")
+		body_inside = false
+	elif !animated_sprite.is_playing():
+		Transitioned.emit(self, "EnemySwitch")
 
 func Physics_Update(delta: float):
-	if enemy:
-		enemy.velocity = move_direction * move_speed
+	pass
+
+func _on_area_chase_body_entered(body):
+	body_inside = true
