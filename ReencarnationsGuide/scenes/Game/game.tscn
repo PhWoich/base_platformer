@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://biue3qjhcjfsd" path="res://scenes/Player/player.tscn" id="3_nhysr"]
 [ext_resource type="PackedScene" uid="uid://bnfoi1tdxq654" path="res://scenes/Platform/platform.tscn" id="5_36gnm"]
 [ext_resource type="PackedScene" uid="uid://cn2dpwh60upss" path="res://scenes/Soul/soul.tscn" id="6_ghuwl"]
-[ext_resource type="PackedScene" uid="uid://ciablxafq3bqs" path="res://scenes/bullet.tscn" id="7_qb2ip"]
+[ext_resource type="PackedScene" uid="uid://ciablxafq3bqs" path="res://scenes/Bullet/bullet.tscn" id="7_qb2ip"]
 [ext_resource type="PackedScene" uid="uid://bnwvb7ig3te7a" path="res://scenes/Portal/portal.tscn" id="8_2l6u7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ql1mm"]
@@ -1196,6 +1196,7 @@ _data = {
 
 [node name="Game" type="Node2D"]
 position = Vector2(-1, 0)
+script = ExtResource("1_1jtry")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, 0)
@@ -1218,7 +1219,6 @@ zoom = Vector2(4, 4)
 
 [node name="Game Manager" type="Node" parent="Camera2D"]
 unique_name_in_owner = true
-script = ExtResource("1_1jtry")
 
 [node name="Timer View" type="Label" parent="Camera2D/Game Manager"]
 offset_left = 304.0

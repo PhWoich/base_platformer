@@ -4,8 +4,10 @@ var timer_start_value:float = 3.0
 var timer_cont:float = 0.0
 var timer_int:int = 0
 
-@onready var timer_view:Label = $"Timer View"
-@onready var game_over_view: Label = $"Game Over View"
+@onready var player: CharacterBody2D = $Player
+
+@onready var timer_view:Label = $"Camera2D/Game Manager/Timer View"
+@onready var game_over_view: Label = $"Camera2D/Game Manager/Game Over View"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +15,7 @@ func _ready() -> void:
 	timer_cont = timer_start_value
 	timer_int = timer_start_value
 	timer_view.text = str(timer_int)
+	player.buid_player(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
