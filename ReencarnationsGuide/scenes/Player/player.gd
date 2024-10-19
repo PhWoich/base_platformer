@@ -11,6 +11,8 @@ const JUMP_VELOCITY = -300.0
 @onready var bullet_point_right: Node2D = $Bullet_point_right
 @onready var bullet_point_left: Node2D = $Bullet_point_left
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 var looking_left:bool
 var last_bullet_point: Node2D
 
@@ -48,7 +50,7 @@ func _physics_process(delta):
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("move_left", "move_right")
 	
 	if direction != 0.0:
 		looking_left = direction < 0.0
@@ -62,9 +64,29 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	handle_animation(direction)
 	move_and_slide()
 
 
 func game_over_reaction():
 	self.queue_free()
+
+
+func handle_animation(direction):
+	if direction > 0:
+		animated_sprite_2d.flip_h = false
+	elif direction < 0:
+		animated_sprite_2d.flip_h = true
+		
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.play("run")
+	else:
+		if velocity.y > 0:
+			animated_sprite_2d.play("jump_start")
+		else:
+			animated_sprite_2d.play("jump_finish")
+			
