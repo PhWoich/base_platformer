@@ -6,12 +6,13 @@ class_name PortalActivate
 var body_exited : bool = false
 
 func Enter():
-	print("Enter Activate")
+	#print("Enter Activate")
 	animated_sprite.play("emerge")
 	body_exited = false
 	
 func Exit():
-	print("Exit Activate")
+	#print("Exit Activate")
+	pass
 	
 func Update(delta: float):
 	if !animated_sprite.is_playing():

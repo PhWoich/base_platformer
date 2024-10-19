@@ -19,11 +19,11 @@ func _process(delta):
 		current_state.Update(delta)
 		
 func on_child_transition(state, new_state_name):
-	print("Current:")
-	print(current_state)
-	print("New:")
-	print(new_state_name)
-	print("----")
+	#print("Current:")
+	#print(current_state)
+	#print("New:")
+	#print(new_state_name)
+	#print("----")
 	
 	if state != current_state:
 		return

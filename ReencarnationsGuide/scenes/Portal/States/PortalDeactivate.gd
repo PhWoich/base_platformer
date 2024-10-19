@@ -6,12 +6,13 @@ class_name PortalDeactivate
 var body_entered : bool = false
 
 func Enter():
-	print("Enter Deactivate")
+	#print("Enter Deactivate")
 	animated_sprite.play("disappear")
 	body_entered = false
 	
 func Exit():
-	print("Exit Deactivate")
+	#print("Exit Deactivate")
+	pass
 	
 func Update(delta: float):
 	if !animated_sprite.is_playing():

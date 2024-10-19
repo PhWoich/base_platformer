@@ -4,6 +4,8 @@ class_name Player
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+@export var gameManager : GameManager
+
 @onready var root:Node2D
 @onready var bullet = load("res://scenes/Bullet/bullet.tscn")
 
@@ -26,6 +28,7 @@ func soul_collected():
 func soul_deliver():
 	if soul_carry.visible:
 		soul_carry.visible = false
+		gameManager.add_soul()
 		return true
 	return false
 

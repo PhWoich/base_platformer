@@ -6,13 +6,14 @@ class_name PortalWait
 var body_entered : bool = false
 
 func Enter():
-	print("Enter Wait")
+	#print("Enter Wait")
 	animated_sprite.visible = false
 	body_entered = false
 	
 func Exit():
-	print("Exit Wait")
+	#print("Exit Wait")
 	animated_sprite.visible = true
+	pass
 	
 func Update(delta: float):
 	if body_entered:

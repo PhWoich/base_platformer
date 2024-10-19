@@ -1,4 +1,5 @@
 extends Node
+class_name GameManager
 
 signal game_over_sig
 
@@ -6,10 +7,13 @@ var timer_start_value:float = 60.0
 var timer_cont:float = 0.0
 var timer_int:int = 0
 
+var soul_count: int = 0
+
 @onready var player: CharacterBody2D = $Player
 
 @onready var timer_view:Label = $"CanvasUI/Control/MarginContainer/Container General/Container Top/Timer View"
 @onready var game_over_view: Label = $"CanvasUI/Control/MarginContainer/Container General/Container Center/Game Over View"
+@onready var soul_view: Label = $"CanvasUI/Control/MarginContainer/Container General/Container Top/Soul View"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +23,7 @@ func _ready() -> void:
 	timer_view.text = str(timer_int)
 	player.buid_player(self)
 	game_over_sig.connect(player.game_over_reaction)
+	soul_count = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +33,7 @@ func _process(delta: float) -> void:
 		timer_cont = timer_cont-delta
 		timer_int = timer_cont
 		timer_view.text = str(timer_int)
+		soul_view.text = str(soul_count)
 	
 	if Input.is_action_just_released("restart_game") and game_over():
 		game_restart()
@@ -46,6 +52,7 @@ func damage(damage_taken: int) -> void:
 func restore_all() -> void:
 	timer_cont = timer_start_value
 	timer_int = timer_start_value
+	soul_count = 0
 
 
 func game_over() -> bool:
@@ -58,3 +65,6 @@ func game_over() -> bool:
 
 func game_restart() -> void:
 	get_tree().reload_current_scene()
+
+func add_soul():
+	soul_count += 1

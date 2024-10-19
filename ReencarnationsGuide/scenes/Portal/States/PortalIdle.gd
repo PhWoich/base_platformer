@@ -6,11 +6,12 @@ class_name PortalIdle
 var body_inside : bool = false
 
 func Enter():
-	print("Enter Idle")
+	#print("Enter Idle")
 	animated_sprite.play("idle")
 
 func Exit():
-	print("Exit Idle")
+	#print("Exit Idle")
+	pass
 	
 func Update(delta: float):
 	if !body_inside:
