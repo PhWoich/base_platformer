@@ -1,6 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bnwvb7ig3te7a"]
+[gd_scene load_steps=33 format=3 uid="uid://bnwvb7ig3te7a"]
 
 [ext_resource type="Texture2D" uid="uid://dmbxhah0qgbl4" path="res://assets/sprites/Portals/Green Portal Sprite Sheet.png" id="1_trghk"]
+[ext_resource type="Script" path="res://scenes/Portal/state_machine.gd" id="2_phnar"]
+[ext_resource type="Script" path="res://scenes/Portal/States/PortalIdle.gd" id="3_qq1hb"]
+[ext_resource type="Script" path="res://scenes/Portal/States/PortalWait.gd" id="4_firdu"]
+[ext_resource type="Script" path="res://scenes/Portal/States/PortalActivate.gd" id="5_6yibt"]
+[ext_resource type="Script" path="res://scenes/Portal/States/PortalDeactivate.gd" id="6_sjh74"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4k8cy"]
 atlas = ExtResource("1_trghk")
@@ -182,15 +187,54 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pkoc"]
-size = Vector2(61, 42)
+size = Vector2(79, 42)
 
-[node name="Portal" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elr86"]
+size = Vector2(31, 42)
+
+[node name="Portal" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b0rds")
 animation = &"idle"
-autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(23.5, 4)
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_phnar")
+initial_state = NodePath("PortalWait")
+
+[node name="PortalIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("3_qq1hb")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="PortalWait" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("4_firdu")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="PortalActivate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("5_6yibt")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="PortalDeactivate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("6_sjh74")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="AreaActivation" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaActivation"]
+position = Vector2(32.5, 4)
 shape = SubResource("RectangleShape2D_2pkoc")
+
+[node name="AreaGetSoul" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGetSoul"]
+position = Vector2(8.5, 4)
+shape = SubResource("RectangleShape2D_elr86")
+
+[connection signal="body_entered" from="AreaActivation" to="StateMachine/PortalIdle" method="_on_area_activation_body_entered"]
+[connection signal="body_entered" from="AreaActivation" to="StateMachine/PortalWait" method="_on_area_activation_body_entered"]
+[connection signal="body_entered" from="AreaActivation" to="StateMachine/PortalDeactivate" method="_on_area_activation_body_entered"]
+[connection signal="body_exited" from="AreaActivation" to="StateMachine/PortalIdle" method="_on_area_activation_body_exited"]
+[connection signal="body_exited" from="AreaActivation" to="StateMachine/PortalActivate" method="_on_area_activation_body_exited"]
+[connection signal="body_entered" from="AreaGetSoul" to="StateMachine/PortalIdle" method="_on_area_get_soul_body_entered"]

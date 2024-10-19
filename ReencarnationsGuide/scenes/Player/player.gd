@@ -21,6 +21,11 @@ func soul_collected():
 		return true
 	return false
 
+func soul_deliver():
+	if soul_carry.visible:
+		soul_carry.visible = false
+		return true
+	return false
 
 func buid_player(root_node:Node2D):
 	root = root_node
