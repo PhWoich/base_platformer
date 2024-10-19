@@ -1,13 +1,15 @@
 extends Node
 
-var timer_start_value:float = 3.0
+signal game_over_sig
+
+var timer_start_value:float = 60.0
 var timer_cont:float = 0.0
 var timer_int:int = 0
 
 @onready var player: CharacterBody2D = $Player
 
-@onready var timer_view:Label = $"Camera2D/Game Manager/Timer View"
-@onready var game_over_view: Label = $"Camera2D/Game Manager/Game Over View"
+@onready var timer_view:Label = $"CanvasUI/Control/MarginContainer/Container General/Container Top/Timer View"
+@onready var game_over_view: Label = $"CanvasUI/Control/MarginContainer/Container General/Container Center/Game Over View"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _ready() -> void:
 	timer_int = timer_start_value
 	timer_view.text = str(timer_int)
 	player.buid_player(self)
+	game_over_sig.connect(player.game_over_reaction)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,6 +51,7 @@ func restore_all() -> void:
 func game_over() -> bool:
 	if timer_int <= 0:
 		game_over_view.text = "GAME OVER!\nPress R to restart the game."
+		game_over_sig.emit()
 		return true
 	else:
 		return false
