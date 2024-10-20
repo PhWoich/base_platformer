@@ -368,6 +368,54 @@ position = Vector2(202, -425)
 [node name="Soul4" parent="Souls" instance=ExtResource("6_ghuwl")]
 position = Vector2(508, -452)
 
+[node name="Soul5" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(733, -322)
+
+[node name="Soul6" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(872, -264)
+
+[node name="Soul7" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(700, -153)
+
+[node name="Soul8" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(756, -152)
+
+[node name="Soul9" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(214, -176)
+
+[node name="Soul10" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(165, -135)
+
+[node name="Soul11" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(404, 34)
+
+[node name="Soul12" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(763, 36)
+
+[node name="Soul13" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(604, -481)
+
+[node name="Soul14" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(349, -265)
+
+[node name="Soul15" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(100, -489)
+
+[node name="Soul16" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(700, -249)
+
+[node name="Soul17" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(488, -352)
+
+[node name="Soul18" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(940, -321)
+
+[node name="Soul19" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(1068, -266)
+
+[node name="Soul20" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(458, -127)
+
 [node name="Portals" type="Node" parent="."]
 
 [node name="Portal" parent="Portals" instance=ExtResource("8_2l6u7")]
@@ -384,6 +432,13 @@ rotation = -3.14159
 [node name="Portal4" parent="Portals" instance=ExtResource("8_2l6u7")]
 position = Vector2(1065, -320)
 rotation = -3.14159
+
+[node name="Portal5" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(109, -191)
+
+[node name="Portal6" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(602, -38)
+rotation = 3.14159
 
 [node name="Enemy" parent="." instance=ExtResource("10_ux3ml")]
 position = Vector2(261, -247)
