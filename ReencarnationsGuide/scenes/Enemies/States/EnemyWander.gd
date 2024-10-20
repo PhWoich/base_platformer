@@ -5,6 +5,7 @@ class_name EnemyWander
 @export var enemy: CharacterBody2D
 @export var pivot : Node2D
 @export var move_speed := 20.0
+@export var voador : bool = false
 
 var wander_time : float
 var body_inside : bool = false
@@ -68,4 +69,4 @@ func _on_area_ground_body_entered(body):
 
 func _on_area_ground_body_exited(body):
 	#print("lost Floor")
-	floor = false
+	floor = false or voador

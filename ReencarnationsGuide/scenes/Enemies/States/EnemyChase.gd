@@ -4,6 +4,7 @@ class_name EnemyChase
 @export var animated_sprite: AnimatedSprite2D
 @export var enemy: CharacterBody2D
 @export var move_speed := 40.0
+@export var voador : bool = false
 
 var body_inside : bool = true
 var attack : bool = false
@@ -49,7 +50,7 @@ func _on_area_ground_body_entered(body):
 
 func _on_area_ground_body_exited(body):
 	#print("lost Floor")
-	floor = false
+	floor = false or voador
 
 func _on_area_attack_body_entered(body):
 	attack = true
