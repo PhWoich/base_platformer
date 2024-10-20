@@ -35,7 +35,7 @@ func _ready() -> void:
 	SilentWolf.configure({
 		"api_key": "jqEGorvY4Na5v5qkNBiHb96XcbNS98Djhpkwhcha",
 		"game_id": "ReencarnationsGuide",
-		"log_level": 2})
+		"log_level": 0})
 
 	SilentWolf.configure_scores({"open_scene_on_close": "res://scenes/MainPage.tscn"})
 
