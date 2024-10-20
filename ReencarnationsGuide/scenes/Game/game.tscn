@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwmd0bacb6cfr"]
+[gd_scene load_steps=17 format=3 uid="uid://bwmd0bacb6cfr"]
 
 [ext_resource type="Script" path="res://scenes/Game Manager/game_manager.gd" id="1_1jtry"]
 [ext_resource type="FontFile" uid="uid://bnoffqugacrcw" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0euhg"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bnfoi1tdxq654" path="res://scenes/Platform/platform.tscn" id="5_36gnm"]
 [ext_resource type="PackedScene" uid="uid://0wbbwetmh3tn" path="res://scenes/Map/map.tscn" id="5_gefxy"]
 [ext_resource type="PackedScene" uid="uid://cn2dpwh60upss" path="res://scenes/Soul/soul.tscn" id="6_ghuwl"]
-[ext_resource type="PackedScene" uid="uid://ciablxafq3bqs" path="res://scenes/Bullet/bullet.tscn" id="7_qb2ip"]
 [ext_resource type="PackedScene" uid="uid://bnwvb7ig3te7a" path="res://scenes/Portal/portal.tscn" id="8_2l6u7"]
 [ext_resource type="PackedScene" uid="uid://cr1sswnkufmcf" path="res://scenes/Enemies/enemy.tscn" id="10_ux3ml"]
 
@@ -355,20 +354,30 @@ libraries = {
 }
 autoplay = "Move"
 
-[node name="Soul" parent="Platforms" instance=ExtResource("6_ghuwl")]
-position = Vector2(170, -248)
+[node name="Souls" type="Node" parent="."]
 
-[node name="Soul2" parent="Platforms" instance=ExtResource("6_ghuwl")]
-position = Vector2(132, -247)
+[node name="Soul" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(124, -352)
 
-[node name="Bullet" parent="." instance=ExtResource("7_qb2ip")]
+[node name="Soul2" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(152, -257)
 
-[node name="Portal" parent="." instance=ExtResource("8_2l6u7")]
-position = Vector2(432, -272)
+[node name="Portals" type="Node" parent="."]
 
-[node name="Portal2" parent="." instance=ExtResource("8_2l6u7")]
-position = Vector2(617, -263)
-scale = Vector2(-1, -1)
+[node name="Portal" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(390, -503)
+
+[node name="Portal2" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(293, -343)
+rotation = -3.14159
+
+[node name="Portal3" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(1065, -320)
+rotation = -3.14159
+
+[node name="Portal4" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(1065, -320)
+rotation = -3.14159
 
 [node name="Enemy" parent="." instance=ExtResource("10_ux3ml")]
 position = Vector2(261, -247)
