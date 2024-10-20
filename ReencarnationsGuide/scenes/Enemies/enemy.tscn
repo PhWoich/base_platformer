@@ -449,9 +449,10 @@ enemy = NodePath("../..")
 [node name="EnemySwitch" type="Node" parent="FSM"]
 script = ExtResource("11_lpi3q")
 
-[node name="EnemyDamage" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="EnemyDamage" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "root_node_enemy")]
 script = ExtResource("7_b2qwl")
 animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
+root_node_enemy = NodePath("../..")
 
 [node name="Pivot" type="Node2D" parent="."]
 
