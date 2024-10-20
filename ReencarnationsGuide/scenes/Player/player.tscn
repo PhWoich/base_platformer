@@ -624,8 +624,10 @@ script = ExtResource("1_r85as")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_23unu")
-animation = &"run"
+animation = &"atack_sp"
 autoplay = "idle"
+frame = 17
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -640,7 +642,7 @@ autoplay = "default"
 frame_progress = 0.370705
 
 [node name="Bullet_point_right" type="Node2D" parent="."]
-position = Vector2(3, -3)
+position = Vector2(8, -3)
 
 [node name="Bullet_point_left" type="Node2D" parent="."]
-position = Vector2(-3, -3)
+position = Vector2(-8, -3)
