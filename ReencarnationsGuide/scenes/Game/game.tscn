@@ -326,6 +326,29 @@ theme_override_fonts/font = ExtResource("2_0euhg")
 theme_override_font_sizes/font_size = 8
 text = "Press F to fire"
 
+[node name="Label3" type="Label" parent="Map"]
+offset_left = 282.0
+offset_top = -89.0
+offset_right = 561.0
+offset_bottom = -66.0
+theme_override_fonts/font = ExtResource("2_0euhg")
+theme_override_font_sizes/font_size = 8
+text = "Someone has stolen the souls that were being sent for reincarnation
+
+Quickly, collect the 25 lost souls and return them to the reincarnation portals"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Map"]
+offset_left = 662.0
+offset_top = -42.0
+offset_right = 768.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("2_0euhg")
+theme_override_font_sizes/font_size = 8
+text = "Press F to fire"
+
 [node name="Player" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("3_nhysr")]
 position = Vector2(503, -553)
 gameManager = NodePath("..")
