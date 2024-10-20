@@ -20,6 +20,7 @@ const JUMP_VELOCITY = -300.0
 var looking_left:bool
 var last_bullet_point: Node2D
 var damaged_dir:int = 0
+var attacking : bool = false
 
 func soul_collected():
 	if not soul_carry.visible:
@@ -35,6 +36,8 @@ func soul_deliver():
 	return false
 
 func get_damage(from : Node2D):
+	attacking = false
+	attack_anim_running = false
 	var distance = position.distance_to(from.position)
 	if distance < 30: 
 		if from.position.x > position.x:
@@ -48,6 +51,11 @@ func buid_player(root_node:Node2D):
 	root = root_node
 	last_bullet_point = bullet_point_right
 
+func create_bullet():
+	var bullet_instance = bullet.instantiate()
+	bullet_instance.bullet_buider(looking_left, last_bullet_point.rotation, last_bullet_point.global_position)
+	root.add_child(bullet_instance)
+	attacking = false
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -59,9 +67,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_released("fire"):
-		var bullet_instance = bullet.instantiate()
-		bullet_instance.bullet_buider(looking_left, last_bullet_point.rotation, last_bullet_point.global_position)
-		root.add_child(bullet_instance)
+		attacking = true
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -92,6 +98,7 @@ func game_over_reaction():
 
 
 var taking_damage : bool = false
+var attack_anim_running : bool = false
 func handle_animation(direction):
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
@@ -99,16 +106,25 @@ func handle_animation(direction):
 		animated_sprite_2d.flip_h = true
 	
 	if damaged_dir == 0:
-		if is_on_floor():
-			if direction == 0:
-				animated_sprite_2d.play("idle")
+		if !attacking:
+			if is_on_floor():
+				if direction == 0:
+					animated_sprite_2d.play("idle")
+				else:
+					animated_sprite_2d.play("run")
 			else:
-				animated_sprite_2d.play("run")
+				if velocity.y > 0:
+					animated_sprite_2d.play("jump_start")
+				else:
+					animated_sprite_2d.play("jump_finish")
 		else:
-			if velocity.y > 0:
-				animated_sprite_2d.play("jump_start")
+			if !attack_anim_running:
+				animated_sprite_2d.play("atack_sp")
+				attack_anim_running = true
 			else:
-				animated_sprite_2d.play("jump_finish")
+				if !animated_sprite_2d.is_playing():
+					create_bullet()
+					attack_anim_running = false
 	else:
 		if !taking_damage:
 			animated_sprite_2d.play("damage")

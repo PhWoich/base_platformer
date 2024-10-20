@@ -1,8 +1,9 @@
 extends Area2D
 class_name Bullet
 
-@export var SPEED = 200
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var SPEED = 150
+#@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
 
 var spawnPos: Vector2
 var spawnRot: float
@@ -12,10 +13,12 @@ func bullet_buider(left:bool, rot:float, pos:Vector2):
 	go_left = left
 	spawnPos = pos
 	spawnRot = rot
+	
 
 func _ready() -> void:
 	global_position = spawnPos
 	global_rotation = spawnRot
+	sprite.modulate = Color(0.9,0.5,0.3)
 	if go_left:
 		sprite.flip_h = true
 
