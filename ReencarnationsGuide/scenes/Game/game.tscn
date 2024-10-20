@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwmd0bacb6cfr"]
+[gd_scene load_steps=19 format=3 uid="uid://bwmd0bacb6cfr"]
 
 [ext_resource type="Script" path="res://scenes/Game Manager/game_manager.gd" id="1_1jtry"]
 [ext_resource type="FontFile" uid="uid://bnoffqugacrcw" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0euhg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bnwvb7ig3te7a" path="res://scenes/Portal/portal.tscn" id="8_2l6u7"]
 [ext_resource type="PackedScene" uid="uid://cr1sswnkufmcf" path="res://scenes/Enemies/enemy.tscn" id="10_ux3ml"]
 [ext_resource type="PackedScene" uid="uid://5writxsrje6c" path="res://scenes/Enemies/enemy_wolf.tscn" id="11_bomus"]
+[ext_resource type="PackedScene" uid="uid://d3d0n530pnyt7" path="res://scenes/Enemies/enemy_bat.tscn" id="12_qwssr"]
 
 [sub_resource type="Animation" id="Animation_hqb3d"]
 resource_name = "Move"
@@ -431,7 +432,7 @@ position = Vector2(458, -127)
 position = Vector2(464, -553)
 
 [node name="Soul22" parent="Souls" instance=ExtResource("6_ghuwl")]
-position = Vector2(464, -553)
+position = Vector2(325, -593)
 
 [node name="Soul23" parent="Souls" instance=ExtResource("6_ghuwl")]
 position = Vector2(118, -634)
@@ -506,6 +507,18 @@ position = Vector2(273, -243)
 
 [node name="Enemy_Wolf5" parent="Enemies" instance=ExtResource("11_bomus")]
 position = Vector2(993, -242)
+
+[node name="Enemy_Bat" parent="Enemies" instance=ExtResource("12_qwssr")]
+position = Vector2(481.751, -494.171)
+
+[node name="Enemy_Bat2" parent="Enemies" instance=ExtResource("12_qwssr")]
+position = Vector2(406.751, -346.171)
+
+[node name="Enemy_Bat3" parent="Enemies" instance=ExtResource("12_qwssr")]
+position = Vector2(878.751, -319.171)
+
+[node name="Enemy_Bat4" parent="Enemies" instance=ExtResource("12_qwssr")]
+position = Vector2(582.751, -295.171)
 
 [connection signal="pressed" from="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer/SendScore_Button" to="." method="_on_send_score_button_pressed"]
 [connection signal="pressed" from="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
