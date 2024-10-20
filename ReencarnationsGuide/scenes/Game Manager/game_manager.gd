@@ -3,7 +3,7 @@ class_name GameManager
 
 signal game_over_sig
 
-var timer_start_value:float = 6.0
+var timer_start_value:float = 60.0
 var timer_cont:float = 0.0
 var timer_int:int = 0
 
