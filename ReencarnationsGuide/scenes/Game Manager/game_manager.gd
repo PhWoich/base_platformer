@@ -11,8 +11,8 @@ var soul_count: int = 0
 
 @onready var player: CharacterBody2D = $Player
 
+@onready var player_score_label:Label = $"CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer/Label2"
 @onready var timer_view:Label = $"CanvasUI/Control/UI/Container General/Container Top/Timer View"
-@onready var game_over_view: Label = $"CanvasUI/Control/GameOver_sendScore/Container General/Container Bottom/Game Over View"
 @onready var soul_view: Label = $"CanvasUI/Control/UI/Container General/Container Top/Soul View"
 @onready var PlayerName_line_edit = $"CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer/LineEdit"
 @onready var container_game_over_send_score = $CanvasUI/Control/GameOver_sendScore
@@ -25,7 +25,6 @@ var soul_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game_over_view.text = ""
 	timer_cont = timer_start_value
 	timer_int = timer_start_value
 	timer_view.text = str(timer_int)
@@ -45,7 +44,6 @@ func _ready() -> void:
 var game_over_registered : bool = false
 func _process(delta: float) -> void:
 	if !game_over():
-		game_over_view.text = ""
 		timer_cont = timer_cont-delta
 		timer_int = timer_cont
 		timer_view.text = str(timer_int)
@@ -53,8 +51,8 @@ func _process(delta: float) -> void:
 	else:
 		if !game_over_registered:
 			game_over_registered = true
+			player_score_label.text = str(10*soul_count + timer_cont)
 			container_game_over_send_score.visible = true
-			game_over_view.text = "GAME OVER!\nPress R to restart the game."
 			game_over_sig.emit()
 			
 			
