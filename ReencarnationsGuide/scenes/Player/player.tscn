@@ -570,8 +570,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rjod2"]
-radius = 3.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl5ug"]
+size = Vector2(4, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1a1ff"]
 atlas = ExtResource("3_1bbb5")
@@ -624,7 +624,7 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
-shape = SubResource("CircleShape2D_rjod2")
+shape = SubResource("RectangleShape2D_cl5ug")
 
 [node name="soulCarry" type="AnimatedSprite2D" parent="."]
 visible = false

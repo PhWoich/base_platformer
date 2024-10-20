@@ -9,6 +9,7 @@ class_name EnemyWander
 
 var wander_time : float
 var body_inside : bool = false
+var chase_back : bool = false
 var move_direction : int = 1
 
 var floor : bool = true
@@ -20,10 +21,12 @@ func randomize_wander():
 		pivot.scale.x = -1.0
 	else:
 		pivot.scale.x = 1.0
-	wander_time = randf_range(1,3)	
+	wander_time = randf_range(1,3)
+	#wander_time = 60	
 	
 func Enter():
 	body_inside = false
+	chase_back = false
 	randomize_wander()
 	animated_sprite.play("run")
 
@@ -46,7 +49,11 @@ func Update(delta: float):
 
 func Physics_Update(delta: float):
 	if enemy:
-		if floor: 
+		if chase_back:
+			chase_back = false
+			pivot.scale.x *= -1.0
+			move_direction *= -1
+		elif floor: 
 			if enemy.is_on_wall():
 				#print("Turn Wall")
 				pivot.scale.x *= -1.0
@@ -70,3 +77,8 @@ func _on_area_ground_body_entered(body):
 func _on_area_ground_body_exited(body):
 	#print("lost Floor")
 	floor = false or voador
+
+
+
+func _on_area_chase_back_body_entered(body):
+	chase_back = true

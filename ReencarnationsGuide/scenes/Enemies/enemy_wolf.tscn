@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://5writxsrje6c"]
+[gd_scene load_steps=44 format=3 uid="uid://5writxsrje6c"]
 
 [ext_resource type="Script" path="res://scenes/Enemies/enemy.gd" id="1_5qsc4"]
 [ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="2_vqwxk"]
@@ -17,10 +17,10 @@
 size = Vector2(11, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frfmx"]
-size = Vector2(26, 12)
+size = Vector2(18, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ak4m"]
-size = Vector2(69, 12)
+size = Vector2(45, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5wbo"]
 size = Vector2(11, 8)
@@ -219,6 +219,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0lx4"]
+size = Vector2(24, 12)
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_5qsc4")
 
@@ -230,9 +233,11 @@ shape = SubResource("RectangleShape2D_bwl2k")
 script = ExtResource("2_vqwxk")
 initial_state = NodePath("EnemyWander")
 
-[node name="EnemyIdle" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="EnemyIdle" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "pivot", "enemy")]
 script = ExtResource("3_mwb48")
 animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
+pivot = NodePath("../../Pivot")
+enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="FSM/EnemyIdle"]
 
@@ -242,10 +247,11 @@ animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
 enemy = NodePath("../..")
 pivot = NodePath("../../Pivot")
 
-[node name="EnemyChase" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "enemy")]
+[node name="EnemyChase" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "enemy", "pivot")]
 script = ExtResource("5_xrmtm")
 animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
 enemy = NodePath("../..")
+pivot = NodePath("../../Pivot")
 
 [node name="EnemyAttack" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "enemy")]
 script = ExtResource("6_xelrh")
@@ -265,7 +271,7 @@ animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AreaAttack"]
-position = Vector2(5, -10)
+position = Vector2(9, -10)
 shape = SubResource("RectangleShape2D_frfmx")
 debug_color = Color(0.957771, 0.170595, 0.30209, 0.42)
 
@@ -273,7 +279,7 @@ debug_color = Color(0.957771, 0.170595, 0.30209, 0.42)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AreaChase"]
-position = Vector2(10.5, -10)
+position = Vector2(22.5, -10)
 shape = SubResource("RectangleShape2D_7ak4m")
 
 [node name="AreaCollide" type="Area2D" parent="Pivot"]
@@ -298,6 +304,13 @@ position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_datdj")
 animation = &"run"
 
+[node name="AreaChaseBack" type="Area2D" parent="Pivot"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AreaChaseBack"]
+position = Vector2(-12, -10)
+shape = SubResource("RectangleShape2D_l0lx4")
+
 [connection signal="body_entered" from="Pivot/AreaAttack" to="FSM/EnemyChase" method="_on_area_attack_body_entered"]
 [connection signal="body_exited" from="Pivot/AreaAttack" to="FSM/EnemyChase" method="_on_area_attack_body_exited"]
 [connection signal="body_entered" from="Pivot/AreaChase" to="FSM/EnemyIdle" method="_on_area_chase_body_entered"]
@@ -309,3 +322,5 @@ animation = &"run"
 [connection signal="body_entered" from="Pivot/AreaGround" to="FSM/EnemyChase" method="_on_area_ground_body_entered"]
 [connection signal="body_exited" from="Pivot/AreaGround" to="FSM/EnemyWander" method="_on_area_ground_body_exited"]
 [connection signal="body_exited" from="Pivot/AreaGround" to="FSM/EnemyChase" method="_on_area_ground_body_exited"]
+[connection signal="body_entered" from="Pivot/AreaChaseBack" to="FSM/EnemyIdle" method="_on_area_chase_back_body_entered"]
+[connection signal="body_entered" from="Pivot/AreaChaseBack" to="FSM/EnemyWander" method="_on_area_chase_back_body_entered"]

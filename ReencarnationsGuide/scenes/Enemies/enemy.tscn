@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cr1sswnkufmcf"]
+[gd_scene load_steps=71 format=3 uid="uid://cr1sswnkufmcf"]
 
 [ext_resource type="Texture2D" uid="uid://10dly6f2r8vn" path="res://assets/sprites/Minifantasy_Monster_Creatures_Assets/Brain_Slayer/BrainSlayerOrthogonalAttack.png" id="1_1km3q"]
 [ext_resource type="Script" path="res://scenes/Enemies/enemy.gd" id="1_52m85"]
@@ -18,7 +18,7 @@
 size = Vector2(9, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frfmx"]
-size = Vector2(30, 18)
+size = Vector2(15, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ak4m"]
 size = Vector2(103, 18)
@@ -407,6 +407,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i13io"]
+size = Vector2(15, 18)
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_52m85")
 
@@ -418,9 +421,11 @@ shape = SubResource("RectangleShape2D_bwl2k")
 script = ExtResource("5_lh46b")
 initial_state = NodePath("EnemyWander")
 
-[node name="EnemyIdle" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite")]
+[node name="EnemyIdle" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "pivot", "enemy")]
 script = ExtResource("6_d2s7k")
 animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
+pivot = NodePath("../../Pivot")
+enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="FSM/EnemyIdle"]
 
@@ -430,10 +435,11 @@ animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
 enemy = NodePath("../..")
 pivot = NodePath("../../Pivot")
 
-[node name="EnemyChase" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "enemy")]
+[node name="EnemyChase" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "enemy", "pivot")]
 script = ExtResource("8_u3aag")
 animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
 enemy = NodePath("../..")
+pivot = NodePath("../../Pivot")
 
 [node name="EnemyAttack" type="Node" parent="FSM" node_paths=PackedStringArray("animated_sprite", "enemy")]
 script = ExtResource("9_ifuou")
@@ -453,7 +459,7 @@ animated_sprite = NodePath("../../Pivot/AnimatedSprite2D")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AreaAttack"]
-position = Vector2(0, -9)
+position = Vector2(7.5, -9)
 shape = SubResource("RectangleShape2D_frfmx")
 debug_color = Color(0.957771, 0.170595, 0.30209, 0.42)
 
@@ -486,6 +492,13 @@ position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_datdj")
 animation = &"run"
 
+[node name="AreaChaseBack" type="Area2D" parent="Pivot"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AreaChaseBack"]
+position = Vector2(-7.5, -9)
+shape = SubResource("RectangleShape2D_i13io")
+
 [connection signal="body_entered" from="Pivot/AreaAttack" to="FSM/EnemyChase" method="_on_area_attack_body_entered"]
 [connection signal="body_exited" from="Pivot/AreaAttack" to="FSM/EnemyChase" method="_on_area_attack_body_exited"]
 [connection signal="body_entered" from="Pivot/AreaChase" to="FSM/EnemyIdle" method="_on_area_chase_body_entered"]
@@ -497,3 +510,5 @@ animation = &"run"
 [connection signal="body_entered" from="Pivot/AreaGround" to="FSM/EnemyChase" method="_on_area_ground_body_entered"]
 [connection signal="body_exited" from="Pivot/AreaGround" to="FSM/EnemyWander" method="_on_area_ground_body_exited"]
 [connection signal="body_exited" from="Pivot/AreaGround" to="FSM/EnemyChase" method="_on_area_ground_body_exited"]
+[connection signal="body_entered" from="Pivot/AreaChaseBack" to="FSM/EnemyIdle" method="_on_area_chase_back_body_entered"]
+[connection signal="body_entered" from="Pivot/AreaChaseBack" to="FSM/EnemyWander" method="_on_area_chase_back_body_entered"]

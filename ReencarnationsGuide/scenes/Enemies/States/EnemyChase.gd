@@ -5,6 +5,7 @@ class_name EnemyChase
 @export var enemy: CharacterBody2D
 @export var move_speed := 40.0
 @export var voador : bool = false
+@export var pivot : Node2D
 
 var body_inside : bool = true
 var attack : bool = false
@@ -12,7 +13,9 @@ var attack : bool = false
 var floor : bool = true
 	
 func Enter():
-	enemy.velocity.x = sign(enemy.velocity.x)*move_speed
+	#enemy.velocity.x = sign(enemy.velocity.x)*move_speed
+	enemy.velocity.x = sign(pivot.scale.x)*move_speed
+	
 	#body_inside = true
 	attack = false
 	animated_sprite.play("run")
