@@ -620,6 +620,7 @@ sprite_frames = SubResource("SpriteFrames_23unu")
 animation = &"atack_sp"
 autoplay = "idle"
 frame = 16
+
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -635,7 +636,7 @@ autoplay = "default"
 frame_progress = 0.370705
 
 [node name="Bullet_point_right" type="Node2D" parent="."]
-position = Vector2(3, -3)
+position = Vector2(8, -3)
 
 [node name="Bullet_point_left" type="Node2D" parent="."]
-position = Vector2(-3, -3)
+position = Vector2(-8, -3)
