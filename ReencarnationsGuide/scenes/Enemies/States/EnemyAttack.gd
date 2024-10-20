@@ -10,7 +10,6 @@ func _ready():
 	pass
 		
 func Enter():
-	player = get_node("/root/Game/Player")
 	animated_sprite.play("attack")
 
 func Exit():
@@ -21,7 +20,12 @@ func Update(delta: float):
 	if !animated_sprite.is_playing():
 		Music.explosion.play()
 		Transitioned.emit(self, "EnemySwitch")
-		player.get_damage(enemy)
+		
+		player = get_node("/root/Game/Player")
+		if player != null:
+			player.get_damage(enemy)
+		#else:
+			#print("bug prevented")
 
 func Physics_Update(delta: float):
 	pass
