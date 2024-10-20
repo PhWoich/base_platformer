@@ -1,41 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciablxafq3bqs"]
+[gd_scene load_steps=4 format=3 uid="uid://ciablxafq3bqs"]
 
 [ext_resource type="Script" path="res://scenes/Bullet/bullet.gd" id="1_0fvvb"]
-[ext_resource type="Texture2D" uid="uid://ctkyhoka5ee7p" path="res://assets/sprites/Minifantasy_True_Herfoes_III_Assets/Wizard/Special_Animations/Fireball/Fireball_Projectile.png" id="1_gq7uc"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ruup3"]
-atlas = ExtResource("1_gq7uc")
-region = Rect2(70, 36, 25, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_coqds"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ruup3")
-}],
-"loop": true,
-"name": &"fire_ball",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://daogdhmwcpl23" path="res://assets/sprites/Minifantasy_Monster_Creatures_Assets/Brain_Slayer/MagicProjectile.png" id="3_nq2e2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ckkg"]
-radius = 3.0
-height = 12.0
+radius = 1.0
+height = 6.0
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_0fvvb")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_coqds")
-animation = &"fire_ball"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(0.483333, 0.5)
+texture = ExtResource("3_nq2e2")
+region_enabled = true
+region_rect = Rect2(80.9089, 45.8424, 15.3019, 4.34126)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 0)
+position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2ckkg")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-12, 0)
+position = Vector2(-5, 0)
 scale = Vector2(0.1, 0.3)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://biue3qjhcjfsd"]
+[gd_scene load_steps=91 format=3 uid="uid://biue3qjhcjfsd"]
 
 [ext_resource type="Texture2D" uid="uid://bnqcw3gedr5ne" path="res://assets/sprites/Minifantasy_Creatures_Assets/Base_Humanoids/Human/Base_Human/HumanIdle.png" id="1_7e0du"]
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_r85as"]
@@ -94,10 +94,6 @@ region = Rect2(96, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_52045"]
 atlas = ExtResource("4_ml1mg")
 region = Rect2(128, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkodg"]
-atlas = ExtResource("4_ml1mg")
-region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fd5lo"]
 atlas = ExtResource("5_kial8")
@@ -377,13 +373,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_52045")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jkodg")
 }],
 "loop": false,
 "name": &"atack_sp",
-"speed": 5.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -624,8 +617,10 @@ script = ExtResource("1_r85as")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_23unu")
-animation = &"run"
+animation = &"atack_sp"
 autoplay = "idle"
+frame = 16
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
