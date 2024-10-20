@@ -32,20 +32,21 @@ func soul_deliver():
 	if soul_carry.visible:
 		soul_carry.visible = false
 		gameManager.add_soul()
+		Music.alma_deliver.play()
 		return true
 	return false
 
 func get_damage(from : Node2D):
-	attacking = false
-	attack_anim_running = false
 	var distance = position.distance_to(from.position)
 	if distance < 30: 
+		Music.hurt_player.play()
+		attacking = false
+		attack_anim_running = false
 		if from.position.x > position.x:
 			damaged_dir = -1
 		else:
 			damaged_dir = 1 
-	
-	root.damage(10)
+	#root.damage(10)
 
 func buid_player(root_node:Node2D):
 	root = root_node
@@ -64,6 +65,7 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		Music.jump.play()
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_released("fire"):
@@ -120,6 +122,7 @@ func handle_animation(direction):
 		else:
 			if !attack_anim_running:
 				animated_sprite_2d.play("atack_sp")
+				Music.shoot.play()
 				attack_anim_running = true
 			else:
 				if !animated_sprite_2d.is_playing():

@@ -5,6 +5,7 @@ class_name EnemyDamage
 
 func Enter():
 	#print("Enter Idle")
+	Music.hurt_enemy.play()
 	animated_sprite.play("damage")
 
 func Exit():

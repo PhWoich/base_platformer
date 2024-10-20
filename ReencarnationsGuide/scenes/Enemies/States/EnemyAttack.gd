@@ -19,6 +19,7 @@ func Exit():
 	
 func Update(delta: float):
 	if !animated_sprite.is_playing():
+		Music.explosion.play()
 		Transitioned.emit(self, "EnemySwitch")
 		player.get_damage(enemy)
 

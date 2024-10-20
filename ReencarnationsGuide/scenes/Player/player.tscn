@@ -620,7 +620,6 @@ sprite_frames = SubResource("SpriteFrames_23unu")
 animation = &"atack_sp"
 autoplay = "idle"
 frame = 16
-
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
