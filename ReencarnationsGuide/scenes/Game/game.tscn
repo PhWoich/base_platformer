@@ -317,6 +317,15 @@ size_flags_vertical = 3
 [node name="Map" parent="." instance=ExtResource("5_gefxy")]
 position = Vector2(81, -542)
 
+[node name="Label" type="Label" parent="Map"]
+offset_left = 86.0
+offset_top = -42.0
+offset_right = 192.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("2_0euhg")
+theme_override_font_sizes/font_size = 8
+text = "Press F to fire"
+
 [node name="Player" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("3_nhysr")]
 position = Vector2(503, -553)
 gameManager = NodePath("..")
