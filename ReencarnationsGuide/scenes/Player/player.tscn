@@ -639,3 +639,8 @@ position = Vector2(8, -3)
 
 [node name="Bullet_point_left" type="Node2D" parent="."]
 position = Vector2(-8, -3)
+
+[node name="Coyte_Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Coyte_Timer" to="." method="coyote_timeout"]

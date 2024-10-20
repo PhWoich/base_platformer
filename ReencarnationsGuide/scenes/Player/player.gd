@@ -5,8 +5,8 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
 @export var gameManager : GameManager
-
 @export var damage_jump : float = 30.0
+@export var coyote_time : float = 5
 
 @onready var root:Node2D
 @onready var bullet = load("res://scenes/Bullet/bullet.tscn")
@@ -14,6 +14,8 @@ const JUMP_VELOCITY = -300.0
 @onready var soul_carry = $soulCarry
 @onready var bullet_point_right: Node2D = $Bullet_point_right
 @onready var bullet_point_left: Node2D = $Bullet_point_left
+@onready var coyte_timer: Timer = $Coyte_Timer
+
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -21,6 +23,8 @@ var looking_left:bool
 var last_bullet_point: Node2D
 var damaged_dir:int = 0
 var attacking : bool = false
+
+var jump_available : bool = true
 
 func soul_collected():
 	if not soul_carry.visible:
@@ -61,12 +65,19 @@ func create_bullet():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
+		if jump_available and coyte_timer.is_stopped():
+			coyte_timer.start(coyote_time)
+		
 		velocity += get_gravity() * delta
+	else:
+		jump_available = true
+		coyte_timer.stop()
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and jump_available:
 		Music.jump.play()
 		velocity.y = JUMP_VELOCITY
+		jump_available = false
 	
 	if Input.is_action_just_released("fire"):
 		attacking = true
@@ -93,6 +104,10 @@ func _physics_process(delta):
 		
 	handle_animation(direction)
 	move_and_slide()
+
+
+func coyote_timeout():
+	jump_available = false
 
 
 func game_over_reaction():
