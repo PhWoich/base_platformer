@@ -8,8 +8,10 @@ var body_inside : bool = false
 func Enter():
 	#print("Enter Idle")
 	animated_sprite.play("idle")
+	Music.portal_loop.play()
 
 func Exit():
+	Music.portal_loop.stop()
 	#print("Exit Idle")
 	pass
 	

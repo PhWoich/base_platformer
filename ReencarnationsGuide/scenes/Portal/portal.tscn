@@ -187,10 +187,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pkoc"]
-size = Vector2(79, 42)
+size = Vector2(136, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elr86"]
-size = Vector2(31, 42)
+size = Vector2(50, 42)
 
 [node name="Portal" type="Node2D"]
 
@@ -222,14 +222,14 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaActivation"]
-position = Vector2(32.5, 4)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_2pkoc")
 
 [node name="AreaGetSoul" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGetSoul"]
-position = Vector2(8.5, 4)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_elr86")
 
 [connection signal="body_entered" from="AreaActivation" to="FSM/PortalIdle" method="_on_area_activation_body_entered"]

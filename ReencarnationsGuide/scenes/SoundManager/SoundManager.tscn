@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://ch6vscy6fehgv"]
+
+[ext_resource type="Script" path="res://scenes/SoundManager/SoundManager.gd" id="1_28lsi"]
+[ext_resource type="AudioStream" uid="uid://bm5x3abh3hcrm" path="res://assets/music/BeepBox-Song.wav" id="1_hqnxk"]
+[ext_resource type="AudioStream" uid="uid://dq5hgmhlpd1sw" path="res://assets/sounds/new/explosion.wav" id="2_cuwul"]
+[ext_resource type="AudioStream" uid="uid://bet04bjsj7c0t" path="res://assets/sounds/new/alma_pickup.wav" id="2_jd2o6"]
+[ext_resource type="AudioStream" uid="uid://blnuw3l81hhe0" path="res://assets/sounds/new/alma_deliver.wav" id="3_nc6rm"]
+[ext_resource type="AudioStream" uid="uid://btm8lffuhrhfn" path="res://assets/sounds/new/jump.wav" id="4_14vfo"]
+[ext_resource type="AudioStream" uid="uid://brgcyxfuoahdu" path="res://assets/sounds/new/hitHurt_enemy.wav" id="7_v2cer"]
+[ext_resource type="AudioStream" uid="uid://bxqnowy6hc5ll" path="res://assets/sounds/new/hitHurt_player.wav" id="8_nrbgf"]
+[ext_resource type="AudioStream" uid="uid://s3ye0sfhftbj" path="res://assets/sounds/new/portal_loop.wav" id="9_34flv"]
+[ext_resource type="AudioStream" uid="uid://ce6wm7kbt2q73" path="res://assets/sounds/new/laserShoot.wav" id="10_xasul"]
+
+[node name="SoundManager" type="Node2D"]
+script = ExtResource("1_28lsi")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_cuwul")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_hqnxk")
+autoplay = true
+bus = &"Music"
+
+[node name="Alma_pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jd2o6")
+bus = &"SFX"
+
+[node name="Alma_deliver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nc6rm")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_14vfo")
+bus = &"SFX"
+
+[node name="Hurt_enemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_v2cer")
+bus = &"SFX"
+
+[node name="Hurt_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_nrbgf")
+bus = &"SFX"
+
+[node name="portal_loop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_34flv")
+bus = &"SFX"
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_xasul")
+bus = &"SFX"
