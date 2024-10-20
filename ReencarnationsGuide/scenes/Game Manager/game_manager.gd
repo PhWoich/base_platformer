@@ -76,7 +76,7 @@ func restore_all() -> void:
 
 
 func game_over() -> bool:
-	if timer_int <= 0 or soul_count >= 5: 
+	if timer_int <= 0 or soul_count >= 25: 
 		return true
 	else:
 		return false
