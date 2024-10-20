@@ -76,7 +76,7 @@ func restore_all() -> void:
 
 
 func game_over() -> bool:
-	if timer_int <= 0 or soul_count >= 100: 
+	if timer_int <= 0 or soul_count >= 5: 
 		return true
 	else:
 		return false
@@ -94,7 +94,7 @@ func add_soul():
 
 func _on_send_score_button_pressed():
 	var actual_score = 10*soul_count + timer_cont
-	actual_score = 100
+	#actual_score = 100
 	var scoreId
 	if PlayerName_line_edit.text!='':
 		var sw_result: Dictionary = await SilentWolf.Scores.save_score(PlayerName_line_edit.text, actual_score).sw_save_score_complete
