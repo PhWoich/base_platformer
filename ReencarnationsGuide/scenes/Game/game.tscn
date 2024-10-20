@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://bwmd0bacb6cfr"]
+[gd_scene load_steps=34 format=3 uid="uid://bwmd0bacb6cfr"]
 
 [ext_resource type="Script" path="res://scenes/Game Manager/game_manager.gd" id="1_1jtry"]
 [ext_resource type="Texture2D" uid="uid://fym5qomduk87" path="res://assets/sprites/Minifantasy_Crypt_Of_The_Forgotten_Assets/Tileset/Tileset.png" id="1_aqxtc"]
 [ext_resource type="FontFile" uid="uid://bnoffqugacrcw" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0euhg"]
 [ext_resource type="Texture2D" uid="uid://d4brj5wudhweq" path="res://assets/sprites/Minifantasy_Creatures_Assets/Undead/Wildfire/WildfireIdle.png" id="3_bu0ya"]
 [ext_resource type="PackedScene" uid="uid://biue3qjhcjfsd" path="res://scenes/Player/player.tscn" id="3_nhysr"]
+[ext_resource type="FontFile" uid="uid://d4kabkagmfeq" path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" id="4_7d7ru"]
 [ext_resource type="Texture2D" uid="uid://df1a71os2tyuu" path="res://assets/sprites/Minifantasy_DesolateDesert_Assets/Tileset/ForgottenPlainsLinkDirt/Minifantasy_DesolateDesert_ForgottenPlainsLinkDirt.png" id="4_u0van"]
 [ext_resource type="PackedScene" uid="uid://bnfoi1tdxq654" path="res://scenes/Platform/platform.tscn" id="5_36gnm"]
 [ext_resource type="Texture2D" uid="uid://buqcux73o4vun" path="res://assets/sprites/Minifantasy_DesolateDesert_Assets/Tileset/ForgottenPlainsLinkDirt/Minifantasy_DesolateDesert_ForgottenPlainsLinkDirt0.png" id="6_gdfqh"]
@@ -2759,7 +2760,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasUI/Control"]
+[node name="UI" type="MarginContainer" parent="CanvasUI/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2771,44 +2772,129 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Container General" type="VBoxContainer" parent="CanvasUI/Control/MarginContainer"]
+[node name="Container General" type="VBoxContainer" parent="CanvasUI/Control/UI"]
 layout_mode = 2
 
-[node name="Container Top" type="HBoxContainer" parent="CanvasUI/Control/MarginContainer/Container General"]
+[node name="Container Top" type="HBoxContainer" parent="CanvasUI/Control/UI/Container General"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Timer View" type="Label" parent="CanvasUI/Control/MarginContainer/Container General/Container Top"]
+[node name="Timer View" type="Label" parent="CanvasUI/Control/UI/Container General/Container Top"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_0euhg")
 text = "123"
 
-[node name="Container2" type="Control" parent="CanvasUI/Control/MarginContainer/Container General/Container Top"]
+[node name="Container2" type="Control" parent="CanvasUI/Control/UI/Container General/Container Top"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Container" type="Control" parent="CanvasUI/Control/MarginContainer/Container General/Container Top"]
+[node name="Container" type="Control" parent="CanvasUI/Control/UI/Container General/Container Top"]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasUI/Control/MarginContainer/Container General/Container Top/Container"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasUI/Control/UI/Container General/Container Top/Container"]
 position = Vector2(0, 7)
 texture = ExtResource("3_bu0ya")
 region_enabled = true
 region_rect = Rect2(11.4735, 6.55075, 9.57568, 12.1872)
 
-[node name="Soul View" type="Label" parent="CanvasUI/Control/MarginContainer/Container General/Container Top"]
+[node name="Soul View" type="Label" parent="CanvasUI/Control/UI/Container General/Container Top"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_0euhg")
 text = "000"
 
-[node name="Container Center" type="VBoxContainer" parent="CanvasUI/Control/MarginContainer/Container General"]
+[node name="Container Center" type="VBoxContainer" parent="CanvasUI/Control/UI/Container General"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Game Over View" type="Label" parent="CanvasUI/Control/MarginContainer/Container General/Container Center"]
+[node name="Container Bottom" type="VBoxContainer" parent="CanvasUI/Control/UI/Container General"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameOver_sendScore" type="MarginContainer" parent="CanvasUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Container General" type="VBoxContainer" parent="CanvasUI/Control/GameOver_sendScore"]
+layout_mode = 2
+
+[node name="Container Top" type="HBoxContainer" parent="CanvasUI/Control/GameOver_sendScore/Container General"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Container Center" type="VBoxContainer" parent="CanvasUI/Control/GameOver_sendScore/Container General"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "YOUR SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "123456"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "YOUR NAME"
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SendScore_Button" type="Button" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "SEND SCORE"
+
+[node name="Control2" type="Control" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container Bottom" type="VBoxContainer" parent="CanvasUI/Control/GameOver_sendScore/Container General"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Game Over View" type="Label" parent="CanvasUI/Control/GameOver_sendScore/Container General/Container Bottom"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_0euhg")
@@ -2817,7 +2903,79 @@ text = "123"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Container Bottom" type="VBoxContainer" parent="CanvasUI/Control/MarginContainer/Container General"]
+[node name="GameOver_LeaderBoard" type="MarginContainer" parent="CanvasUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasUI/Control/GameOver_LeaderBoard"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Score_PlayerPosition" type="Label" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "TESTE123"
+
+[node name="Score_PlayerName" type="Label" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "TESTE123"
+
+[node name="VSeparator" type="VSeparator" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Score_PlayerScore" type="Label" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "TESTE123"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7d7ru")
+theme_override_font_sizes/font_size = 16
+text = "RESTART"
+
+[node name="Control2" type="Control" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -2878,3 +3036,6 @@ scale = Vector2(-1, -1)
 
 [node name="Enemy" parent="." instance=ExtResource("10_ux3ml")]
 position = Vector2(434, -512)
+
+[connection signal="pressed" from="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer/SendScore_Button" to="." method="_on_send_score_button_pressed"]
+[connection signal="pressed" from="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
