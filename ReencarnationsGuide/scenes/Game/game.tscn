@@ -362,6 +362,12 @@ position = Vector2(124, -352)
 [node name="Soul2" parent="Souls" instance=ExtResource("6_ghuwl")]
 position = Vector2(152, -257)
 
+[node name="Soul3" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(202, -425)
+
+[node name="Soul4" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(508, -452)
+
 [node name="Portals" type="Node" parent="."]
 
 [node name="Portal" parent="Portals" instance=ExtResource("8_2l6u7")]
