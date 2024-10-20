@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwmd0bacb6cfr"]
+[gd_scene load_steps=18 format=3 uid="uid://bwmd0bacb6cfr"]
 
 [ext_resource type="Script" path="res://scenes/Game Manager/game_manager.gd" id="1_1jtry"]
 [ext_resource type="FontFile" uid="uid://bnoffqugacrcw" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0euhg"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cn2dpwh60upss" path="res://scenes/Soul/soul.tscn" id="6_ghuwl"]
 [ext_resource type="PackedScene" uid="uid://bnwvb7ig3te7a" path="res://scenes/Portal/portal.tscn" id="8_2l6u7"]
 [ext_resource type="PackedScene" uid="uid://cr1sswnkufmcf" path="res://scenes/Enemies/enemy.tscn" id="10_ux3ml"]
+[ext_resource type="PackedScene" uid="uid://5writxsrje6c" path="res://scenes/Enemies/enemy_wolf.tscn" id="11_bomus"]
 
 [sub_resource type="Animation" id="Animation_hqb3d"]
 resource_name = "Move"
@@ -61,7 +62,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(709, -501), Vector2(668, -501)]
+"values": [Vector2(436, -476), Vector2(476, -476)]
 }
 
 [sub_resource type="Animation" id="Animation_3ho0c"]
@@ -134,7 +135,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasUI/Control/UI/Container General/Container Top/Container"]
-position = Vector2(0, 7)
+position = Vector2(-6, 7)
+scale = Vector2(2, 2)
 texture = ExtResource("3_bu0ya")
 region_enabled = true
 region_rect = Rect2(11.4735, 6.55075, 9.57568, 12.1872)
@@ -354,6 +356,15 @@ libraries = {
 }
 autoplay = "Move"
 
+[node name="Platform3" parent="Platforms" instance=ExtResource("5_36gnm")]
+position = Vector2(709, -501)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform3"]
+libraries = {
+"": SubResource("AnimationLibrary_u61tm")
+}
+autoplay = "Move"
+
 [node name="Souls" type="Node" parent="."]
 
 [node name="Soul" parent="Souls" instance=ExtResource("6_ghuwl")]
@@ -416,6 +427,21 @@ position = Vector2(1068, -266)
 [node name="Soul20" parent="Souls" instance=ExtResource("6_ghuwl")]
 position = Vector2(458, -127)
 
+[node name="Soul21" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(464, -553)
+
+[node name="Soul22" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(464, -553)
+
+[node name="Soul23" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(118, -634)
+
+[node name="Soul24" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(654, -618)
+
+[node name="Soul25" parent="Souls" instance=ExtResource("6_ghuwl")]
+position = Vector2(819, -618)
+
 [node name="Portals" type="Node" parent="."]
 
 [node name="Portal" parent="Portals" instance=ExtResource("8_2l6u7")]
@@ -440,8 +466,46 @@ position = Vector2(109, -191)
 position = Vector2(602, -38)
 rotation = 3.14159
 
-[node name="Enemy" parent="." instance=ExtResource("10_ux3ml")]
-position = Vector2(261, -247)
+[node name="Portal7" parent="Portals" instance=ExtResource("8_2l6u7")]
+position = Vector2(421, -575)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy_Squid" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(223, -175)
+
+[node name="Enemy_Squid2" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(187, -119)
+
+[node name="Enemy_Squid3" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(713, -71)
+
+[node name="Enemy_Squid4" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(426, -14)
+
+[node name="Enemy_Squid5" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(427, 41)
+
+[node name="Enemy_Squid6" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(690, 41)
+
+[node name="Enemy_Squid7" parent="Enemies" instance=ExtResource("10_ux3ml")]
+position = Vector2(690, 41)
+
+[node name="Enemy_Wolf" parent="Enemies" instance=ExtResource("11_bomus")]
+position = Vector2(178, -546)
+
+[node name="Enemy_Wolf2" parent="Enemies" instance=ExtResource("11_bomus")]
+position = Vector2(748, -546)
+
+[node name="Enemy_Wolf3" parent="Enemies" instance=ExtResource("11_bomus")]
+position = Vector2(489, -243)
+
+[node name="Enemy_Wolf4" parent="Enemies" instance=ExtResource("11_bomus")]
+position = Vector2(273, -243)
+
+[node name="Enemy_Wolf5" parent="Enemies" instance=ExtResource("11_bomus")]
+position = Vector2(993, -242)
 
 [connection signal="pressed" from="CanvasUI/Control/GameOver_sendScore/Container General/Container Center/HBoxContainer/VBoxContainer/SendScore_Button" to="." method="_on_send_score_button_pressed"]
 [connection signal="pressed" from="CanvasUI/Control/GameOver_LeaderBoard/HBoxContainer2/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
