@@ -37,9 +37,6 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_released("restart_game") and game_over():
 		game_restart()
-	elif Input.is_action_just_released("damage"):
-		# Quando aperta 1 no teclado para testar
-		damage(10)
 	elif Input.is_action_just_released("restore"):
 		# Quando aperta 2 no teclado para testar
 		restore_all()

@@ -41,6 +41,8 @@ func get_damage(from : Node2D):
 			damaged_dir = -1
 		else:
 			damaged_dir = 1 
+	
+	root.damage(10)
 
 func buid_player(root_node:Node2D):
 	root = root_node
